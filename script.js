@@ -14,12 +14,14 @@ function updateCountdown() {
     const totalMilliseconds = nextSunday - now;
     const totalSeconds = Math.floor(totalMilliseconds / 1000);
 
+    const weeks = Math.floor(totalSeconds / (60 * 60 * 24 * 7));
     const days = Math.floor(totalSeconds / (60 * 60 * 24));
     const hours = Math.floor((totalSeconds % (60 * 60 * 24)) / (60 * 60));
     const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
     const seconds = totalSeconds % 60;
     const milliseconds = Math.floor((totalMilliseconds % 1000) ); // Divide by 10 to get 2 digits
 
+    document.getElementById('weeks').textContent = `${weeks} НЕДЕЛЬ`;
     document.getElementById('days').textContent = `${days} ДНЕЙ`;
     document.getElementById('hours').textContent = `${hours.toString().padStart(2, '0')} ЧАСОВ`;
     document.getElementById('minutes').textContent = `${minutes.toString().padStart(2, '0')} МИНУТ`;
