@@ -30,6 +30,6 @@ function updateCountdown() {
     document.getElementById('milliseconds').textContent = `${milliseconds.toString().padStart(3, '0')} МИЛЛИСЕКУНД`;
 }
 
-// Update countdown every 10 milliseconds for smoother display
-setInterval(updateCountdown, 10);
+// Update countdown every 11 milliseconds for smoother display
+setInterval(updateCountdown, 11);
 updateCountdown(); // Initial call
