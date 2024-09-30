@@ -57,3 +57,13 @@ h2 {
         padding: 8px 10px; /* Adjust padding for smaller screens */
     }
 }
+
+.footer {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.2);
+    opacity: 0.7;
+    text-align: right;
+}
