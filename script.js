@@ -1,5 +1,8 @@
 function followGrammar(type, num) {
-    if (5 <= num && num <= 20 || num == 0) {
+    if (5 <= num && num <= 20) {
+        return type;
+    }
+    if (num % 10 == 0) {
         return type;
     }
     if (num % 10 == 1) {
@@ -7,6 +10,7 @@ function followGrammar(type, num) {
             case "НЕДЕЛЬ": return "НЕДЕЛЯ";
             case "ДНЕЙ": return "ДЕНЬ";
             case "ЧАСОВ": return "ЧАС";
+            case "МИНУТ": return "МИНУТА";
             case "СЕКУНД": return "СЕКУНДА";
             default: return type;
         }
@@ -16,6 +20,7 @@ function followGrammar(type, num) {
             case "НЕДЕЛЬ": return "НЕДЕЛИ";
             case "ДНЕЙ": return "ДНЯ";
             case "ЧАСОВ": return "ЧАСА";
+            case "МИНУТ": return "МИНУТЫ";
             case "СЕКУНД": return "СЕКУНДЫ";
             default: return type;
         }
