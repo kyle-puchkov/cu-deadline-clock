@@ -34,7 +34,7 @@ function updateCountdown() {
 
     const daysUntilSunday = (7 - now.getDay()) % 7; // 0 means today, so we want next Sunday
     nextSunday.setDate(now.getDate() + daysUntilSunday);
-    nextSunday.setHours(13, 30, 0, 0); // Set to 22:00
+    nextSunday.setHours(13, 15, 0, 0); // Set to 22:00
 
     // If it's already past Sunday 22:00, set the next Sunday
     if (now > nextSunday) {
