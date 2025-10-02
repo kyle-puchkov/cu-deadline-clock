@@ -30,18 +30,21 @@ function followGrammar(type, num) {
 
 function updateCountdown() {
     const now = new Date();
-    const nextSunday = new Date();
+    const target = new Date(now);
 
-    const daysUntilSunday = (7 - now.getDay()) % 7; // 0 means today, so we want next Sunday
-    nextSunday.setDate(now.getDate() + daysUntilSunday);
-    nextSunday.setHours(22, 0, 0, 0); // Set to 22:00
+    // Thursday is 4 in getDay(): (0=Sun ... 4=Thu ... 6=Sat)
+    const targetDay = 4;
+    const daysUntilThu = (targetDay - now.getDay() + 7) % 7;
 
-    // If it's already past Sunday 22:00, set the next Sunday
-    if (now > nextSunday) {
-        nextSunday.setDate(nextSunday.getDate() + 7);
+    target.setDate(now.getDate() + daysUntilThu);
+    target.setHours(23, 59, 0, 0); // 23:59
+
+    // If it's already past Thursday 23:59 this week, jump to next week
+    if (now > target) {
+        target.setDate(target.getDate() + 7);
     }
 
-    const totalMilliseconds = nextSunday - now;
+    const totalMilliseconds = target - now;
     const totalSeconds = Math.floor(totalMilliseconds / 1000);
 
     const weeks = Math.floor(totalSeconds / (60 * 60 * 24 * 7));
@@ -49,7 +52,7 @@ function updateCountdown() {
     const hours = Math.floor((totalSeconds % (60 * 60 * 24)) / (60 * 60));
     const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
     const seconds = totalSeconds % 60;
-    const milliseconds = Math.floor((totalMilliseconds % 1000) ); // Divide by 10 to get 2 digits
+    const milliseconds = Math.floor(totalMilliseconds % 1000);
 
     document.getElementById('weeks').textContent = `${weeks} ${followGrammar('НЕДЕЛЬ', weeks)}`;
     document.getElementById('days').textContent = `${days} ${followGrammar('ДНЕЙ', days)}`;
@@ -58,7 +61,6 @@ function updateCountdown() {
     document.getElementById('seconds').textContent = `${seconds.toString().padStart(2, '0')} ${followGrammar('СЕКУНД', seconds)}`;
     document.getElementById('milliseconds').textContent = `${milliseconds.toString().padStart(3, '0')} МИЛЛИСЕКУНД`;
 }
-
 // Update countdown every 11 milliseconds for smoother display
 setInterval(updateCountdown, 11);
 updateCountdown(); // Initial call
